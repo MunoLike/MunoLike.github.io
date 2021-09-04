@@ -1,41 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Pages on 極北のMunoLike</title>
-    <link>https://munolike.com/page/</link>
-    <description>Recent content in Pages on 極北のMunoLike</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>ja-jp</language>
-    <lastBuildDate>Fri, 03 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://munolike.com/page/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About</title>
-      <link>https://munolike.com/about/</link>
-      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://munolike.com/about/</guid>
-      <description>自己紹介 こんにちは．かの地で学生をやらせていただいています． このブログでは主に学んだこと・気づいたことを備忘録的に書き込んでいく予定です．
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on 極北のMunoLike</title><link>https://munolike.com/page/</link><description>Recent content in Pages on 極北のMunoLike</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Fri, 03 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://munolike.com/page/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://munolike.com/about/</link><pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate><guid>https://munolike.com/about/</guid><description>自己紹介 こんにちは．かの地で学生をやらせていただいています． このブログでは主に学んだこと・気づいたことを備忘録的に書き込んでいく予定です．
 よろしくお願いいたします．
 ちなみに左上アイコン画像の2人は僕ではありません．
-近況 これのせいで近道ができなくなった</description>
-    </item>
-    
-    <item>
-      <title>Blog</title>
-      <link>https://munolike.com/archives/</link>
-      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://munolike.com/archives/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Search</title>
-      <link>https://munolike.com/search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://munolike.com/search/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
-</rss>
+近況</description></item><item><title>Blog</title><link>https://munolike.com/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://munolike.com/archives/</guid><description/></item><item><title>Search</title><link>https://munolike.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://munolike.com/search/</guid><description/></item></channel></rss>
