@@ -1,5 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>極北のMunoLike</title><link>https://www.munolike.com/</link><description>Recent content on 極北のMunoLike</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Fri, 03 Sep 2021 12:57:30 +0900</lastBuildDate><atom:link href="https://www.munolike.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World</title><link>https://www.munolike.com/p/hello-world/</link><pubDate>Fri, 03 Sep 2021 12:57:30 +0900</pubDate><guid>https://www.munolike.com/p/hello-world/</guid><description>こんにちは これが初めての投稿になると思うとなかなか書くのが難しいです． そのうち適当に技術系の記事を書くと思います．
-全然違って燻製つくったりしてるかも．とりあえず最近とったダブハン間近の画像でも上げておきます．</description></item><item><title>About</title><link>https://www.munolike.com/about/</link><pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate><guid>https://www.munolike.com/about/</guid><description>自己紹介 こんにちは．かの地で学生をやらせていただいています． このブログでは主に学んだこと・気づいたことを備忘録的に書き込んでいく予定です．
-よろしくお願いいたします．
-ちなみに左上アイコン画像の2人は僕ではありません．
-近況</description></item><item><title>Blog</title><link>https://www.munolike.com/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://www.munolike.com/archives/</guid><description/></item><item><title>Search</title><link>https://www.munolike.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.munolike.com/search/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>極北のMunoLike</title><link>https://www.munolike.com/</link><description>Recent content on 極北のMunoLike</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Fri, 03 Sep 2021 12:57:30 +0900</lastBuildDate><atom:link href="https://www.munolike.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World</title><link>https://www.munolike.com/p/hello-world/</link><pubDate>Fri, 03 Sep 2021 12:57:30 +0900</pubDate><guid>https://www.munolike.com/p/hello-world/</guid><description>&lt;img src="https://www.munolike.com/p/hello-world/pagehead.jpg" alt="Featured image of post Hello World" />&lt;h2 id="こんにちは">こんにちは&lt;/h2>
+&lt;p>これが初めての投稿になると思うとなかなか書くのが難しいです．
+そのうち適当に技術系の記事を書くと思います．&lt;br>
+全然違って燻製つくったりしてるかも．とりあえず最近とったダブハン間近の画像でも上げておきます．&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 177;
+flex-basis: 426px"
+>
+&lt;a href="https://www.munolike.com/p/hello-world/screenshot.png" data-size="1920x1080">
+&lt;img src="https://www.munolike.com/p/hello-world/screenshot.png"
+width="1920"
+height="1080"
+srcset="https://www.munolike.com/p/hello-world/screenshot_hu636cb72d5e45992d0c13da416fe03ac4_1652529_480x0_resize_box_3.png 480w, https://www.munolike.com/p/hello-world/screenshot_hu636cb72d5e45992d0c13da416fe03ac4_1652529_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="Apex 3700ダメ">
+&lt;/a>
+&lt;figcaption>Apex 3700ダメ&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item></channel></rss>
