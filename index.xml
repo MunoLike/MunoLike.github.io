@@ -2,7 +2,8 @@
 &lt;p>・解決法は簡単でデプロイ元のSecretsにはssh-keygenで生成したファイルのうち，拡張子なしのほうの中身を登録．デプロイ先のDeploy keysには拡張子pubのファイルの中身を登録する．&lt;br>
 また，パスフレーズはなしでやること．デプロイ中にパスフレーズの入力を求められて停止してしまった．デプロイ元-デプロイ先だけでしか使わないのでここはパスフレーズなしの鍵を登録することにした&lt;/p>
 &lt;h2 id="接続するとindexhtmlが表示されずxmlソースが表示されてしまう">接続するとindex.htmlが表示されずxmlソースが表示されてしまう&lt;/h2>
-&lt;p>原因はthemeがgit submoduleとして認識されていてブログソースのリポジトリに取り込まれていないことが原因．これを解決するには２つの方法があり，github actionsでビルドするときにsubmoduleを取り込むように設定するやり方と，submoduleを削除する方法がある．私はやっつけでブログを作ってしまったためthemesフォルダ内のテーマファイルを直接いじってしまっていたため素のテーマを取り込まれると不具合が生じるため，submoduleを削除する方法でやることにした．そのために&lt;/p>
+&lt;p>原因はthemeがgit submoduleとして認識されていてブログソースのリポジトリに取り込まれていないことが原因．これを解決するには２つの方法があり，github actionsでビルドするときにsubmoduleを取り込むように設定するやり方と，submoduleを削除する方法がある．私はやっつけでブログを作ってしまったためthemesフォルダ内のテーマファイルを直接いじってしまっていた．そのためsubmoduleを削除する方法でやることにした．&lt;/p>
+&lt;p>以下の&lt;/p>
 &lt;pre>&lt;code>git rm --cached themes/(テーマフォルダディレクトリ)
 &lt;/code>&lt;/pre>&lt;p>を実行し，手動でthemes/(テーマフォルダディレクトリ)内の.gitフォルダを削除するという荒業でなんとかした．本当はテーマをフォークしたものを使うべきなのだろうが今回はこういうことにする．&lt;/p></description></item><item><title>Hello World</title><link>https://www.munolike.com/p/hello-world/</link><pubDate>Fri, 03 Sep 2021 12:57:30 +0900</pubDate><guid>https://www.munolike.com/p/hello-world/</guid><description>&lt;img src="https://www.munolike.com/p/hello-world/pagehead.jpg" alt="Featured image of post Hello World" />&lt;h2 id="こんにちは">こんにちは&lt;/h2>
 &lt;p>これが初めての投稿になると思うとなかなか書くのが難しいです．
