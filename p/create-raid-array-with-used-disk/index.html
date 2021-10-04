@@ -1,7 +1,7 @@
 <!doctype html><html lang=ja-jp>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="目的 　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて公開後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．
-手段 　HDDを追加購入して増設，RAID1アレイを構築することで目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="目的 　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて後悔後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．
+手段 　HDDを追加購入して増設，RAID1アレイを構築することで上記の目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．
  今回使用したY字ケーブル 
 作業工程 1. Y字ケーブルの取り付け 　取り付けました．（下図）
  取り付けたところ．上に載っているのはRPi4 
@@ -24,8 +24,8 @@ mkfs.ext4 /dev/md0 を実行してext4でフォーマットして，
 4. SAMBA，fstabの設定 　既存のハードディスクをRaidに組み込みたいが現在sambaの保存フォルダとして設定されている．まずこれを外すためにrsyncなどで作成したRAIDアレイにコピーしておくか，バックアップを作成する．これはのちの操作を誤った際の保険にもなるので必ず行うこと．"><title>現在使用中のディスクを残したままRAID1アレイを構築する</title>
 <link rel=canonical href=https://www.munolike.com/p/create-raid-array-with-used-disk/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="現在使用中のディスクを残したままRAID1アレイを構築する">
-<meta property="og:description" content="目的 　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて公開後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．
-手段 　HDDを追加購入して増設，RAID1アレイを構築することで目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．
+<meta property="og:description" content="目的 　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて後悔後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．
+手段 　HDDを追加購入して増設，RAID1アレイを構築することで上記の目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．
  今回使用したY字ケーブル 
 作業工程 1. Y字ケーブルの取り付け 　取り付けました．（下図）
  取り付けたところ．上に載っているのはRPi4 
@@ -50,8 +50,8 @@ mkfs.ext4 /dev/md0 を実行してext4でフォーマットして，
 <meta property="og:site_name" content="極北のMunoLike">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="サーバー"><meta property="article:tag" content="ストレージ"><meta property="article:published_time" content="2021-10-04T07:47:36+09:00"><meta property="article:modified_time" content="2021-10-04T07:47:36+09:00"><meta property="og:image" content="https://www.munolike.com/p/create-raid-array-with-used-disk/computer_harddisk.png">
 <meta name=twitter:title content="現在使用中のディスクを残したままRAID1アレイを構築する">
-<meta name=twitter:description content="目的 　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて公開後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．
-手段 　HDDを追加購入して増設，RAID1アレイを構築することで目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．
+<meta name=twitter:description content="目的 　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて後悔後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．
+手段 　HDDを追加購入して増設，RAID1アレイを構築することで上記の目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．
  今回使用したY字ケーブル 
 作業工程 1. Y字ケーブルの取り付け 　取り付けました．（下図）
  取り付けたところ．上に載っているのはRPi4 
@@ -168,9 +168,9 @@ on-phone--column extended">
 </header>
 <section class=article-content>
 <h2 id=目的>目的</h2>
-<p>　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて公開後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．</p>
+<p>　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて後悔後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．</p>
 <h2 id=手段>手段</h2>
-<p>　HDDを追加購入して増設，RAID1アレイを構築することで目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．</p>
+<p>　HDDを追加購入して増設，RAID1アレイを構築することで上記の目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．</p>
 <p><figure class=gallery-image style=flex-grow:177;flex-basis:426px>
 <a href=/p/create-raid-array-with-used-disk/20211004_070226.jpg data-size=1280x720>
 <img src=/p/create-raid-array-with-used-disk/20211004_070226.jpg width=1280 height=720 srcset="/p/create-raid-array-with-used-disk/20211004_070226_hu1f32436fb56f8be462049d96971cadd0_126654_480x0_resize_q75_box.jpg 480w, /p/create-raid-array-with-used-disk/20211004_070226_hu1f32436fb56f8be462049d96971cadd0_126654_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=今回使用したY字ケーブル>
