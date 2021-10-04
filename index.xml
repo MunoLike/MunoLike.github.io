@@ -1,4 +1,227 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>極北のMunoLike</title><link>https://www.munolike.com/</link><description>Recent content on 極北のMunoLike</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Fri, 10 Sep 2021 22:49:13 +0900</lastBuildDate><atom:link href="https://www.munolike.com/index.xml" rel="self" type="application/rss+xml"/><item><title>今後の開発予定</title><link>https://www.munolike.com/p/future-development-plan-2021/</link><pubDate>Fri, 10 Sep 2021 22:49:13 +0900</pubDate><guid>https://www.munolike.com/p/future-development-plan-2021/</guid><description>&lt;img src="https://www.munolike.com/p/future-development-plan-2021/head.jpg" alt="Featured image of post 今後の開発予定" />&lt;h2 id="今後なにをしたいのか">今後なにをしたいのか&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>極北のMunoLike</title><link>https://www.munolike.com/</link><description>Recent content on 極北のMunoLike</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Mon, 04 Oct 2021 07:47:36 +0900</lastBuildDate><atom:link href="https://www.munolike.com/index.xml" rel="self" type="application/rss+xml"/><item><title>現在使用中のディスクを残したままRAID1アレイを構築する</title><link>https://www.munolike.com/p/create-raid-array-with-used-disk/</link><pubDate>Mon, 04 Oct 2021 07:47:36 +0900</pubDate><guid>https://www.munolike.com/p/create-raid-array-with-used-disk/</guid><description>&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/computer_harddisk.png" alt="Featured image of post 現在使用中のディスクを残したままRAID1アレイを構築する" />&lt;h2 id="目的">目的&lt;/h2>
+&lt;p>　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて公開後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．&lt;/p>
+&lt;h2 id="手段">手段&lt;/h2>
+&lt;p>　HDDを追加購入して増設，RAID1アレイを構築することで目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 177;
+flex-basis: 426px"
+>
+&lt;a href="https://www.munolike.com/p/create-raid-array-with-used-disk/20211004_070226.jpg" data-size="1280x720">
+&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/20211004_070226.jpg"
+width="1280"
+height="720"
+srcset="https://www.munolike.com/p/create-raid-array-with-used-disk/20211004_070226_hu1f32436fb56f8be462049d96971cadd0_126654_480x0_resize_q75_box.jpg 480w, https://www.munolike.com/p/create-raid-array-with-used-disk/20211004_070226_hu1f32436fb56f8be462049d96971cadd0_126654_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="今回使用したY字ケーブル">
+&lt;/a>
+&lt;figcaption>今回使用したY字ケーブル&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h2 id="作業工程">作業工程&lt;/h2>
+&lt;h3 id="1-y字ケーブルの取り付け">1. Y字ケーブルの取り付け&lt;/h3>
+&lt;p>　取り付けました．（下図）&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 177;
+flex-basis: 426px"
+>
+&lt;a href="https://www.munolike.com/p/create-raid-array-with-used-disk/20211004_074016_HDR.jpg" data-size="640x360">
+&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/20211004_074016_HDR.jpg"
+width="640"
+height="360"
+srcset="https://www.munolike.com/p/create-raid-array-with-used-disk/20211004_074016_HDR_hu612dfd3947b5f44b8b34530823d6c6fc_49846_480x0_resize_q75_box.jpg 480w, https://www.munolike.com/p/create-raid-array-with-used-disk/20211004_074016_HDR_hu612dfd3947b5f44b8b34530823d6c6fc_49846_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="取り付けたところ．上に載っているのはRPi4">
+&lt;/a>
+&lt;figcaption>取り付けたところ．上に載っているのはRPi4&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h3 id="2-追加したディスクの初期化">2. 追加したディスクの初期化&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo fdisk -l
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>を実行する．すると以下の図のように現在認識されている記憶領域のリストが表示される．&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 150;
+flex-basis: 360px"
+>
+&lt;a href="https://www.munolike.com/p/create-raid-array-with-used-disk/sc1.png" data-size="600x399">
+&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/sc1.png"
+width="600"
+height="399"
+srcset="https://www.munolike.com/p/create-raid-array-with-used-disk/sc1_huf7dd32d474e23def08d8958c79540e17_17488_480x0_resize_box_3.png 480w, https://www.munolike.com/p/create-raid-array-with-used-disk/sc1_huf7dd32d474e23def08d8958c79540e17_17488_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="実行結果">
+&lt;/a>
+&lt;figcaption>実行結果&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>次にfdiskで既存のパーティションを削除，新しく作成した．このときNTFSの管理情報が残っているという警告があったが，ext4で運用する予定なので削除した．&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo fdisk /dev/sdb
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 96;
+flex-basis: 231px"
+>
+&lt;a href="https://www.munolike.com/p/create-raid-array-with-used-disk/sc2.png" data-size="711x736">
+&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/sc2.png"
+width="711"
+height="736"
+srcset="https://www.munolike.com/p/create-raid-array-with-used-disk/sc2_hu61fbc7145686f68ec9a7a7ee9ea2bf2c_37039_480x0_resize_box_3.png 480w, https://www.munolike.com/p/create-raid-array-with-used-disk/sc2_hu61fbc7145686f68ec9a7a7ee9ea2bf2c_37039_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="実行結果">
+&lt;/a>
+&lt;figcaption>実行結果&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>もともとあったディスクはsdaとして認識されていたので，今回追加したディスクはsdbとして認識されていることになる．&lt;/p>
+&lt;p>以上でディスクの初期化は完了した．&lt;/p>
+&lt;h3 id="3-raidデバイスを作成する">3. RAIDデバイスを作成する&lt;/h3>
+&lt;p>　この作業をする前にmdadmをインストールしておく必要がある．今回はRaspbian上なのでapt installでインストールした．また，apt upgradeした際は再起動しておくこと（常識だった）．ファイルの更新で齟齬が生じるのかそのままではmdadmでアレイを構築できなかった．&lt;/p>
+&lt;p>再起動後&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo mdadm --create /dev/md0 --auto&lt;span style="color:#f92672">=&lt;/span>yes --level&lt;span style="color:#f92672">=&lt;/span>raid1 --raid-devices&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> missing /dev/sdb1
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>コマンドを実行する．（下図）&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 449;
+flex-basis: 1079px"
+>
+&lt;a href="https://www.munolike.com/p/create-raid-array-with-used-disk/sc4.png" data-size="877x195">
+&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/sc4.png"
+width="877"
+height="195"
+srcset="https://www.munolike.com/p/create-raid-array-with-used-disk/sc4_hu50039916bc6b72d63276ec48de46c423_11215_480x0_resize_box_3.png 480w, https://www.munolike.com/p/create-raid-array-with-used-disk/sc4_hu50039916bc6b72d63276ec48de46c423_11215_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="RAIDデバイスを作成する">
+&lt;/a>
+&lt;figcaption>RAIDデバイスを作成する&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>つぎに&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">cat /proc/mdstat
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>で作成できたか確認する．&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 413;
+flex-basis: 991px"
+>
+&lt;a href="https://www.munolike.com/p/create-raid-array-with-used-disk/sc5.png" data-size="405x98">
+&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/sc5.png"
+width="405"
+height="98"
+srcset="https://www.munolike.com/p/create-raid-array-with-used-disk/sc5_hu25cfc75547d404600697844d4fdf4958_3725_480x0_resize_box_3.png 480w, https://www.munolike.com/p/create-raid-array-with-used-disk/sc5_hu25cfc75547d404600697844d4fdf4958_3725_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="うまくいった">
+&lt;/a>
+&lt;figcaption>うまくいった&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">mkfs.ext4 /dev/md0
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>を実行してext4でフォーマットして，&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 285;
+flex-basis: 685px"
+>
+&lt;a href="https://www.munolike.com/p/create-raid-array-with-used-disk/sc6.png" data-size="648x227">
+&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/sc6.png"
+width="648"
+height="227"
+srcset="https://www.munolike.com/p/create-raid-array-with-used-disk/sc6_hu02b7b38d7a4f7c09205fc466669b7b24_11268_480x0_resize_box_3.png 480w, https://www.munolike.com/p/create-raid-array-with-used-disk/sc6_hu02b7b38d7a4f7c09205fc466669b7b24_11268_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="ext4でフォーマット">
+&lt;/a>
+&lt;figcaption>ext4でフォーマット&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>下準備は完了．&lt;/p>
+&lt;h3 id="4-sambafstabの設定">4. SAMBA，fstabの設定&lt;/h3>
+&lt;p>　既存のハードディスクをRaidに組み込みたいが現在sambaの保存フォルダとして設定されている．まずこれを外すためにrsyncなどで作成したRAIDアレイにコピーしておくか，バックアップを作成する．これはのちの操作を誤った際の保険にもなるので必ず行うこと．&lt;/p>
+&lt;p>つぎに&lt;code>/etc/samba/smb.conf&lt;/code>の赤線の場所をRAIDアレイのマウント先に設定しておく．&lt;/p>
+&lt;p>私はこの作業を行う前にRAIDアレイをマウントし，既存のハードディスク内のデータをコピーしておいたのでそこを指定した．またコピー先のディレクトリに権限を付与することを忘れないようにすること．&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 144;
+flex-basis: 346px"
+>
+&lt;a href="https://www.munolike.com/p/create-raid-array-with-used-disk/sc8.png" data-size="309x214">
+&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/sc8.png"
+width="309"
+height="214"
+srcset="https://www.munolike.com/p/create-raid-array-with-used-disk/sc8_hu061aaee1e4dc7c8582c686d2abe6f28d_4507_480x0_resize_box_3.png 480w, https://www.munolike.com/p/create-raid-array-with-used-disk/sc8_hu061aaee1e4dc7c8582c686d2abe6f28d_4507_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="pathの設定">
+&lt;/a>
+&lt;figcaption>pathの設定&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>　つぎにfstabを設定する．下記のように設定した．&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 782;
+flex-basis: 1877px"
+>
+&lt;a href="https://www.munolike.com/p/create-raid-array-with-used-disk/sc9.png" data-size="618x79">
+&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/sc9.png"
+width="618"
+height="79"
+srcset="https://www.munolike.com/p/create-raid-array-with-used-disk/sc9_huc3aa740e7bbd997b51ae534d1b523b85_2900_480x0_resize_box_3.png 480w, https://www.munolike.com/p/create-raid-array-with-used-disk/sc9_huc3aa740e7bbd997b51ae534d1b523b85_2900_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="fstabの設定">
+&lt;/a>
+&lt;figcaption>fstabの設定&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h3 id="5-既存のハードディスクをext4でフォーマットした後mdadmで追加">5. 既存のハードディスクをext4でフォーマットした後mdadmで追加&lt;/h3>
+&lt;p>　　最後に既存のハードディスクをフォーマットし，下記の通りのコマンドを実行しRAIDアレイに追加したら完了．&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo mkfs.ext4 /dev/sda1
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo mdadm /dev/md0 --add /dev/sda1
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">cat /proc/mdstat
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 146;
+flex-basis: 350px"
+>
+&lt;a href="https://www.munolike.com/p/create-raid-array-with-used-disk/sc10.png" data-size="837x573">
+&lt;img src="https://www.munolike.com/p/create-raid-array-with-used-disk/sc10.png"
+width="837"
+height="573"
+srcset="https://www.munolike.com/p/create-raid-array-with-used-disk/sc10_hu4aa21f462d29a1b1866a108aab88d7d5_31333_480x0_resize_box_3.png 480w, https://www.munolike.com/p/create-raid-array-with-used-disk/sc10_hu4aa21f462d29a1b1866a108aab88d7d5_31333_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="最終工程">
+&lt;/a>
+&lt;figcaption>最終工程&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>同期が完了するのを待って再起動，無事にファイルの追加・削除ができることが確認できた．&lt;/p>
+&lt;h3 id="終わりに">終わりに&lt;/h3>
+&lt;p>　やはりインターネットは偉大だ．調べたものをつなぎ合わせてなんとかここまでたどり着くことができた．明日はテストなので残り時間は勉強しなきゃ・・・&lt;/p>
+&lt;p>今後はradiko自動録音スクリプトなどを作成していきたい．&lt;/p>
+&lt;h3 id="参考文献">参考文献&lt;/h3>
+&lt;p>非RAIDシステムのRAID化 - CentOSで自宅サーバー構築
+&lt;a class="link" href="https://centossrv.com/centos5-raid-2.shtml" target="_blank" rel="noopener"
+>https://centossrv.com/centos5-raid-2.shtml&lt;/a>&lt;/p>
+&lt;p>Step by Step: シングルHDDをRAID 1に変換; LVM on RAID編 (Fedora 20) | Netsphere Laboratories
+&lt;a class="link" href="https://www.nslabs.jp/raid1-convert.rhtml" target="_blank" rel="noopener"
+>https://www.nslabs.jp/raid1-convert.rhtml&lt;/a>&lt;/p>
+&lt;p>fstab - ArchWiki
+&lt;a class="link" href="https://wiki.archlinux.jp/index.php/Fstab" target="_blank" rel="noopener"
+>https://wiki.archlinux.jp/index.php/Fstab&lt;/a>&lt;/p>
+&lt;p>【 blkid 】コマンド――ブロックデバイスの属性を表示する：Linux基本コマンドTips（182） - ＠IT
+&lt;a class="link" href="https://atmarkit.itmedia.co.jp/ait/articles/1802/09/news019.html" target="_blank" rel="noopener"
+>https://atmarkit.itmedia.co.jp/ait/articles/1802/09/news019.html&lt;/a>&lt;/p>
+&lt;p>◇mdadmによるRAIDの解除◇初心者のためのLinuxサーバー構築講座(CentOS 自宅サーバー対応)☆お便利サーバー.com☆
+&lt;a class="link" href="http://ftp.lumica.co.jp/_raid_create/delete_mdadm.html" target="_blank" rel="noopener"
+>http://ftp.lumica.co.jp/_raid_create/delete_mdadm.html&lt;/a>&lt;/p>
+&lt;p>ソフトウェアRAID の初期設定と運用 - mdadm - Qiita
+&lt;a class="link" href="https://qiita.com/k__murayama/items/659edf3257cc2f1211a5" target="_blank" rel="noopener"
+>https://qiita.com/k__murayama/items/659edf3257cc2f1211a5&lt;/a>&lt;/p>
+&lt;p>Sambaでファイルサーバーを構築しよう：基礎から理解するLinuxサーバー［Cent OS 7.0編］（8）（1/3 ページ） - ＠IT
+&lt;a class="link" href="https://atmarkit.itmedia.co.jp/ait/articles/1612/01/news184.html" target="_blank" rel="noopener"
+>https://atmarkit.itmedia.co.jp/ait/articles/1612/01/news184.html&lt;/a>&lt;/p>
+&lt;p>chmodでファイルのパーミッションを再帰的に変更する | ⬢ Appirits spirits
+&lt;a class="link" href="https://spirits.appirits.com/doruby/8785/" target="_blank" rel="noopener"
+>https://spirits.appirits.com/doruby/8785/&lt;/a>&lt;/p></description></item><item><title>今後の開発予定</title><link>https://www.munolike.com/p/future-development-plan-2021/</link><pubDate>Fri, 10 Sep 2021 22:49:13 +0900</pubDate><guid>https://www.munolike.com/p/future-development-plan-2021/</guid><description>&lt;img src="https://www.munolike.com/p/future-development-plan-2021/head.jpg" alt="Featured image of post 今後の開発予定" />&lt;h2 id="今後なにをしたいのか">今後なにをしたいのか&lt;/h2>
 &lt;p>とりあえずVue.jsを学んでなにか手軽なwebアプリを１個作成したい．候補としては，&lt;/p>
 &lt;ul>
 &lt;li>脳内10秒と現実の10秒をピッタリにできるか検証するもの．アニメーションもつけれれば👍&lt;/li>

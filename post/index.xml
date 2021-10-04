@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 極北のMunoLike</title><link>https://www.munolike.com/post/</link><description>Recent content in Posts on 極北のMunoLike</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Fri, 10 Sep 2021 22:49:13 +0900</lastBuildDate><atom:link href="https://www.munolike.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>今後の開発予定</title><link>https://www.munolike.com/p/future-development-plan-2021/</link><pubDate>Fri, 10 Sep 2021 22:49:13 +0900</pubDate><guid>https://www.munolike.com/p/future-development-plan-2021/</guid><description>今後なにをしたいのか とりあえずVue.jsを学んでなにか手軽なwebアプリを１個作成したい．候補としては，
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 極北のMunoLike</title><link>https://www.munolike.com/post/</link><description>Recent content in Posts on 極北のMunoLike</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Mon, 04 Oct 2021 07:47:36 +0900</lastBuildDate><atom:link href="https://www.munolike.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>現在使用中のディスクを残したままRAID1アレイを構築する</title><link>https://www.munolike.com/p/create-raid-array-with-used-disk/</link><pubDate>Mon, 04 Oct 2021 07:47:36 +0900</pubDate><guid>https://www.munolike.com/p/create-raid-array-with-used-disk/</guid><description>目的 　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて公開後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．
+手段 　HDDを追加購入して増設，RAID1アレイを構築することで目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．
+今回使用したY字ケーブル
+作業工程 1. Y字ケーブルの取り付け 　取り付けました．（下図）
+取り付けたところ．上に載っているのはRPi4
+2. 追加したディスクの初期化 sudo fdisk -l を実行する．すると以下の図のように現在認識されている記憶領域のリストが表示される．
+実行結果
+次にfdiskで既存のパーティションを削除，新しく作成した．このときNTFSの管理情報が残っているという警告があったが，ext4で運用する予定なので削除した．
+sudo fdisk /dev/sdb 実行結果
+もともとあったディスクはsdaとして認識されていたので，今回追加したディスクはsdbとして認識されていることになる．
+以上でディスクの初期化は完了した．
+3. RAIDデバイスを作成する 　この作業をする前にmdadmをインストールしておく必要がある．今回はRaspbian上なのでapt installでインストールした．また，apt upgradeした際は再起動しておくこと（常識だった）．ファイルの更新で齟齬が生じるのかそのままではmdadmでアレイを構築できなかった．
+再起動後
+sudo mdadm --create /dev/md0 --auto=yes --level=raid1 --raid-devices=2 missing /dev/sdb1 コマンドを実行する．（下図）
+RAIDデバイスを作成する
+つぎに
+cat /proc/mdstat で作成できたか確認する．
+うまくいった
+mkfs.ext4 /dev/md0 を実行してext4でフォーマットして，
+ext4でフォーマット
+下準備は完了．
+4. SAMBA，fstabの設定 　既存のハードディスクをRaidに組み込みたいが現在sambaの保存フォルダとして設定されている．まずこれを外すためにrsyncなどで作成したRAIDアレイにコピーしておくか，バックアップを作成する．これはのちの操作を誤った際の保険にもなるので必ず行うこと．</description></item><item><title>今後の開発予定</title><link>https://www.munolike.com/p/future-development-plan-2021/</link><pubDate>Fri, 10 Sep 2021 22:49:13 +0900</pubDate><guid>https://www.munolike.com/p/future-development-plan-2021/</guid><description>今後なにをしたいのか とりあえずVue.jsを学んでなにか手軽なwebアプリを１個作成したい．候補としては，
 脳内10秒と現実の10秒をピッタリにできるか検証するもの．アニメーションもつけれれば👍 山キャッチ Apexの戦績をグラフ化して表示 といった感じ． ほかにはせっかくRaspberry Pi Zeroを買ったのでラジオを使ったガジェットを作ってみたい．Rustを使ったベアメタルTCP/IP通信もしてみたい． でもまずはラジオ録音鯖かな．RPi4がメディア鯖として腐ってるし．Golangで書くと思う．
 またほかには それはそうと，私にプログラミングのアルゴリズム周りの教養が足りなさすぎるのでatcorders青目指したい感じはある． SECCONも面白そう．ApexのUEFIチートとかどんな仕組みになっているのだろう．
 とりまGithubに草を生やすのも兼ねて記事作成．こんなこと言ってるけどまずは普通にやっていなかった学校の科目を復習せねば．．．</description></item><item><title>Github PagesにHugoサイトを投稿するうえで詰まったところ</title><link>https://www.munolike.com/p/what-was-i-stuck-on/</link><pubDate>Sun, 05 Sep 2021 06:20:43 +0900</pubDate><guid>https://www.munolike.com/p/what-was-i-stuck-on/</guid><description>Github Actionsで公開カギ，秘密鍵の登録でハマった ・解決法は簡単でデプロイ元のSecretsにはssh-keygenで生成したファイルのうち，拡張子なしのほうの中身を登録．デプロイ先のDeploy keysには拡張子pubのファイルの中身を登録する．

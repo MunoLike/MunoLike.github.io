@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ストレージ on 極北のMunoLike</title><link>https://www.munolike.com/tags/%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8/</link><description>Recent content in ストレージ on 極北のMunoLike</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Mon, 04 Oct 2021 07:47:36 +0900</lastBuildDate><atom:link href="https://www.munolike.com/tags/%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>現在使用中のディスクを残したままRAID1アレイを構築する</title><link>https://www.munolike.com/p/create-raid-array-with-used-disk/</link><pubDate>Mon, 04 Oct 2021 07:47:36 +0900</pubDate><guid>https://www.munolike.com/p/create-raid-array-with-used-disk/</guid><description>目的 　現在私はRPi4で500GBのファイルサーバーを運用しているが，何もバックアップといった障害対策を行ってはこなかった．ストレージ系のパーツは往々にして突然壊れて公開後に立たずなことがあると伝えられてきているので，何か対策を打つことにした．
+手段 　HDDを追加購入して増設，RAID1アレイを構築することで目的を達成する．この構想はRPiを購入した時からあったが，RPiのUSB給電能力が貧弱（HDD相手なので仕方ないが）だったためY字ケーブル（下図）を購入する必要があり，結果的にHDD1台の運用となっていた．
+今回使用したY字ケーブル
+作業工程 1. Y字ケーブルの取り付け 　取り付けました．（下図）
+取り付けたところ．上に載っているのはRPi4
+2. 追加したディスクの初期化 sudo fdisk -l を実行する．すると以下の図のように現在認識されている記憶領域のリストが表示される．
+実行結果
+次にfdiskで既存のパーティションを削除，新しく作成した．このときNTFSの管理情報が残っているという警告があったが，ext4で運用する予定なので削除した．
+sudo fdisk /dev/sdb 実行結果
+もともとあったディスクはsdaとして認識されていたので，今回追加したディスクはsdbとして認識されていることになる．
+以上でディスクの初期化は完了した．
+3. RAIDデバイスを作成する 　この作業をする前にmdadmをインストールしておく必要がある．今回はRaspbian上なのでapt installでインストールした．また，apt upgradeした際は再起動しておくこと（常識だった）．ファイルの更新で齟齬が生じるのかそのままではmdadmでアレイを構築できなかった．
+再起動後
+sudo mdadm --create /dev/md0 --auto=yes --level=raid1 --raid-devices=2 missing /dev/sdb1 コマンドを実行する．（下図）
+RAIDデバイスを作成する
+つぎに
+cat /proc/mdstat で作成できたか確認する．
+うまくいった
+mkfs.ext4 /dev/md0 を実行してext4でフォーマットして，
+ext4でフォーマット
+下準備は完了．
+4. SAMBA，fstabの設定 　既存のハードディスクをRaidに組み込みたいが現在sambaの保存フォルダとして設定されている．まずこれを外すためにrsyncなどで作成したRAIDアレイにコピーしておくか，バックアップを作成する．これはのちの操作を誤った際の保険にもなるので必ず行うこと．</description></item></channel></rss>
